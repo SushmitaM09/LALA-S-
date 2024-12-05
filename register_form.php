@@ -3,84 +3,94 @@ include 'config.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
-    $pass = isset($_POST['password']) ? md5($_POST['password']) : '';
-    $cpass = isset($_POST['cpassword']) ? md5($_POST['cpassword']) : '';
-   
+    $pass = $_POST['password'] ?? '';
+    $cpass = $_POST['cpassword'] ?? '';
 
-    $select = "SELECT * FROM user WHERE email= '$email'";
+    $select = "SELECT * FROM user WHERE email = '$email'";
     $result = mysqli_query($conn, $select);
 
-    if (mysqli_num_rows($result) > 0) {
-        $error[] = 'User already exists!';
-    } else {
-        if ($pass !== $cpass) {
-            $error[] = 'Passwords do not match!';
-        } else {
-            $insert = "INSERT INTO user(name, email, password) VALUES ('$name', '$email', '$pass')";
-            mysqli_query($conn, $insert);
-            header('location:login.php');
-        }
+    // if (mysqli_num_rows($result) > 0) {
+    //     $error[] = 'User already exists!';
+    // } else {
+    //     if ($pass !== $cpass) {
+    //         $error[] = 'Passwords do not match!';
+    //     } else {
+
+    //         $insert = "INSERT INTO user(name, email, password) VALUES ('$name', '$email', '$pass')";
+    //         mysqli_query($conn, $insert);
+    
+    
+    if (isset($_POST['submit'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+    
+        // Check if role is selected, if not assign 'User' by default
+        $role = isset($_POST['role']) ? $_POST['role'] : 'User'; 
+    
+        // Insert user with the hashed password and default role
+        $query = "INSERT INTO user (email, password, type) VALUES ('$email', '$hashed_password', '$role')";
+        $result = mysqli_query($conn, $query);
     }
+    header('Location: login.php');
 }
+
 ?>
-
-
 
 
 
 <!DOCTYPE html>
 <html lang="en">
+   
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Form</title>
-    
-    <!-- Custom CSS file link -->
-    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="register.css" />
 </head>
+
 <body>
-   <div class="form-container">
-    <form action="" method="post">
-        <h3>Register now</h3>
-<?php
-if(isset($error)){
-    foreach($error as $error){
-        echo '<span class="error-msg">'.$error.'</span>';
-    };
-};
+    <h1 class="head-text">LALA'S LAUNDRY Register PAGE</h1>
+    <div class="form-container">
+        <form action="" method="post">
+            <h3>Register now</h3>
+            <?php
+            if (isset($error)) {
+                foreach ($error as $error) {
+                    echo '<span class="error-msg">' . $error . '</span>';
+                };
+            };
 
-?>
+            ?>
 
 
-   
-        <input type="text" name="name" required placeholder="Enter your name">
-        <input type="email" name="email" required placeholder="Enter your email">
-        
-        <div class="password-field">
-            <input type="password" name="password" required placeholder="Enter your password">
-            <span class="toggle-password" onclick="togglePassword('password')">&#128065;</span> <!-- Eye icon -->
-        </div>
-        <div class="password-field">
-            <input type="password" name="cpassword" required placeholder="Confirm your password">
-            <span class="toggle-password" onclick="togglePassword('confirm-password')">&#128065;</span> <!-- Eye icon -->
-        </div>
 
-        
-        <input type="submit" name="submit" value="register now" class="form-btn">
-        <p>already have an account? <a href="login.php">Login now</a></p>
-     </form>
-   </div> 
+            <input type="text" name="name" required placeholder="Enter your name">
+            <input type="email" name="email" required placeholder="Enter your email">
+<!-- <select name="role" id="role">
 
-   <!-- JavaScript for Show/Hide Password -->
-   <script>
-       function togglePassword(inputId) {
-           const input = document.getElementById(inputId);
-           if (input.type === "password") {
-               input.type = "text";
-           } else {
-               input.type = "password";
-           }
-       }
-   </script>
+<option value="User">User</option>
+<option value="Admin">Admin</option> -->
+
+</select>
+
+
+            <div class="password-field">
+
+                <input type="text" name="password" id="password" required placeholder="Enter your password">
+
+            </div>
+            <div class="password-field">
+
+                <input type="text" name="cpassword" id="password" required placeholder="Comfirm your password">
+            </div>
+
+
+            <input type="submit" name="submit" value="register now" class="form-btn">
+            <p>Already have an account? <a href="login.php">Login now</a></p>
+        </form>
+    </div>
+
 </body>
+
 </html>

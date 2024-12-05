@@ -1,0 +1,79 @@
+:root {
+    --primary-color: #851717; 
+    --secondary-color: #212121; 
+    --accent-color: #9ABD96;
+    --background-light: #f2eae0; 
+    --background-dark: #30333A;
+    --text-light: #FFFFFF; 
+    --text-dark: #514030; 
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-light);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 30px 0;
+}
+
+.pricing {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+}
+
+.pricing-plan {
+    background-color: var(--text-light);
+    border: 1px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s; /* Smooth hover effect */
+    margin: 10px; /* Add margin for spacing */
+}
+
+.pricing-plan:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.pricing-plan h2 {
+    color: var(--primary-color);
+}
+
+.price {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: var(--primary-color);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+button:hover {
+    background-color: var(--accent-color); /* Use accent color for hover */
+}
+
+footer {
+    text-align: center;
+    padding: 15px 0;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

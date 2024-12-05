@@ -1,0 +1,106 @@
+
+:root {
+    --primary-color: #851717; 
+    --secondary-color: #212121; 
+    --accent-color: #9ABD96;
+    --background-light: #f2eae0; 
+    --background-dark: #30333A;
+    --text-light: #FFFFFF; 
+    --text-dark: #514030; 
+}
+
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+
+.contact-us {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+}
+
+.contact-us h2 {
+    color: #30333A; /* Primary color */
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.contact-us p {
+    color: #72676F; /* Secondary color */
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    font-size: 1.1rem;
+    color: #30333A;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.input-group textarea {
+    resize: vertical;
+}
+
+.submit-btn {
+    padding: 12px 20px;
+    background-color: #30333A;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #B79D9B;
+}
+
+/* Form Result */
+#form-result {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #30333A;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-us {
+        padding: 20px;
+    }
+
+    .input-group input, .input-group textarea {
+        font-size: 1rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+}
